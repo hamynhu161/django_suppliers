@@ -43,6 +43,12 @@ def edit_product_post(request, id):
     item.save()
     return redirect(productlistview)
 
+def products_filtered(request, id):
+    productlist = Product.objects.all()
+    filteredproducts = productlist.filter(supplier = id)
+    context = {'products': filteredproducts}
+    return render (request, "productlist.html", context)
+
 # Supplier views
 def supplierlistview(request):
     supplierlist = Supplier.objects.all()        
@@ -59,3 +65,9 @@ def addsupplier(request):
     f =request.POST['country']
     Supplier(companyName = a, contactName = b, address = c, phone = d, email = e, country = f).save()
     return redirect(request.META['HTTP_REFERER'])           #This gets the URL of the previous page — the page where the form was submitted from.
+
+def searchsuppliers(request):
+    search = request.POST['search']     #get the value of the input field named "search" from the form that was submitted with method="post"
+    filtered = Supplier.objects.filter(companyName__icontains=search)    #icontains is case-insensitive, filter: returns a list of results (even if it's empty). 
+    context = {'suppliers': filtered}
+    return render(request, "supplierlist.html", context)
