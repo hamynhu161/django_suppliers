@@ -22,6 +22,27 @@ def addproduct(request):
     Product(productName = a, packagesize = b, unitprice = c, unitsinstock = d, supplier = Supplier.objects.get(id=e)).save()
     return redirect(request.META['HTTP_REFERER'])
 
+def confirmdeleteproduct (request, id):
+    product = Product.objects.get(id= id)
+    context = {'product': product}
+    return render (request, "confirmdelprod.html", context)
+
+def deleteproduct(request, id):
+    Product.objects.get(id = id).delete()
+    return redirect(productlistview)
+
+def edit_product_get(request, id):
+    product = Product.objects.get(id= id)
+    context = {'product': product}
+    return render (request, "editproduct.html", context)
+
+def edit_product_post(request, id):
+    item = Product.objects.get(id = id)
+    item.unitprice = request.POST['unitprice']
+    item.unitsinstock = request.POST['unitsinstock']
+    item.save()
+    return redirect(productlistview)
+
 # Supplier views
 def supplierlistview(request):
     supplierlist = Supplier.objects.all()        

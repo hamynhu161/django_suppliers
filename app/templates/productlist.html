@@ -19,7 +19,7 @@
         <h4 class="card-title">{{p.productName}}</h4>
         <h5 class="card-text">Supplier: {{p.supplier.companyName}} </h5>
         <p class="card-text">Packagesize: {{p.packagesize}} | Unitprice: {{p.unitprice}} </p>
-        <p class="card-text" style="color: green;">Units in stock: {{p.unitsinstoc}}</p>
+        <p class="card-text" style="color: green;">Units in stock: {{p.unitsinstock}}</p>
 
         <a href="/edit-product-get/{{p.id}}/" class="btn btn-primary">Edit</a>
         <a href="/confirm-delete-product/{{p.id}}/" class="btn btn-danger">Delete</a>
