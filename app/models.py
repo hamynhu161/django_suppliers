@@ -21,4 +21,4 @@ class Product(models.Model):
     # ao:n voi tehdä jos haluaa että admin sivu toimii myöhemmässä vaiheessa paremmin,
     # mutta se ei ole välttämätöntä alussa
     def __str__(self):
-        return f"{self.productName} from {self.companyName}"
+        return f"{self.productName} produced by {self.supplier.companyName}"
