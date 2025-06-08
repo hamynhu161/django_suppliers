@@ -2,7 +2,7 @@ databases:
   - name: suppliersdb
     plan: free
     databaseName: suppliers
-    user: NhuHa
+    user: hamynhu
 
 services:
   - type: web
