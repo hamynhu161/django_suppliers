@@ -76,3 +76,24 @@ This is a simple Django web application to manage suppliers and products. It use
 5. **Run app**:
 
     python manage.py runserver
+
+### 🔧  Test how app behaves in a real WSGI server  (simulate production locally)
+
+1. **Install Waitress**
+
+    pip install waitress
+
+2. **Create server.py to lauch app with Waitress**
+
+    from waitress import serve </br>
+    from suppliers.wsgi import application </br>
+
+    if __name__ == '__main__':      </br>
+        print("Open browser at http://localhost:8080")      </br>
+        print("Shut down server with 'control + c'")        </br>
+        serve(application, host='127.0.0.1', port=8080)     </br>
+  
+3. **Start the server**:
+
+    python server.py
+   
