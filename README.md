@@ -61,8 +61,8 @@ This is a simple Django web application to manage suppliers and products. It use
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'suppliers_db',       
-            'USER': 'postgres',           
+            'NAME': 'your_PostgreSQL_database_name',       
+            'USER': 'your_PostgreSQL_username',           
             'PASSWORD': 'your_password',  
             'HOST': 'localhost',          
             'PORT': '5432',              
