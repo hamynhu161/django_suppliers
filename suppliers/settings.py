@@ -84,12 +84,12 @@ DATABASES = {
     }
 }
 '''
-'''
+
 # Render käytössä
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string
-        default = 'postgresql://postgres:Testaaja@localhost:5432/suppliers_db',
+        default = 'postgresql://postgres:Testaaja@localhost:5432/suppliersdb',
         conn_max_age=600
     )
 }
@@ -106,7 +106,7 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

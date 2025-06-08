@@ -96,4 +96,54 @@ This is a simple Django web application to manage suppliers and products. It use
 3. **Start the server**:
 
     python server.py
-   
+
+### 🔧  Deploying to Render
+
+For a complete step-by-step guide, check out Render’s official Django deployment documentation:
+
+👉 [Render: Deploy a Django App](https://render.com/docs/deploy-django)
+
+1. **Install required packages and update file requirements.txt**
+
+    pip install gunicorn uvicorn whitenoise[brotli] dj-database-url psycopg2-binary </br>
+    pip freeze > requirements.txt
+
+2. **Update setting.py**
+
+- Import helpers:
+
+    import os </br>
+    import dj_database_url </br>
+
+- Configure database:
+
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='postgresql://postgres:Testaaja@localhost:5432/suppliers_db',
+            conn_max_age=600
+        )
+    }
+  
+- Add WhiteNoise middleware:
+
+    MIDDLEWARE = [
+        'whitenoise.middleware.WhiteNoiseMiddleware',
+        ...
+    ]
+
+- Configure static file handling:
+
+    if not DEBUG:
+        STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+        STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+3. **Create a build script (this build script is run whenever a new deploy is initiated)**:
+
+    #!/usr/bin/env bash
+    set -o errexit
+
+    pip install -r requirements.txt
+    python manage.py collectstatic --noinput
+    python manage.py migrate
+
+4. **Create file render.yaml to tell Render to automatically create a PostgreSQL database, web service, use build.sh script to collect static files and run migrations and environment variables for security and flexibility**
