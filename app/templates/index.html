@@ -21,6 +21,9 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+        <!--activates Django’s static file system in the template and adds a CSS file to HTML page-->
+        {% load static %}                   
+        <link rel="stylesheet" href="{% static 'style.css' %}">
 
     </head>
     <body>
@@ -31,7 +34,7 @@
                     <a class="btn btn-success btn-sm" href="/products">Manage products</a>
                     <a class="btn btn-info btn-sm" href="http://careeria.fi">Recruit code professionals</a>
                     <a class="btn btn-primary btn-sm" href="/admin">Admin pages</a>
-                    <a class="btn btn-danger btn-sm">Logout</a>
+                    <a class="btn btn-danger btn-sm" href="/logout">Logout</a>
                 </div>
 
                 {% block content %}             <!--creates a placeholder for child templates to inject their own content--> 
