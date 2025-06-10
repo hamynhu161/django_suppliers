@@ -132,7 +132,9 @@ For a complete step-by-step guide, check out Render’s official Django deployme
     ]
 
 - Configure static file handling:
-
+    DEBUG = False </br>
+    ALLOWED_HOSTS = ['*']    </br>
+    -------
     if not DEBUG:
         STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
         STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
